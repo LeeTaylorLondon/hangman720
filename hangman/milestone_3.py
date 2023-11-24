@@ -1,27 +1,34 @@
-def check_guess(guess, word):
-    """Check if the guessed letter is in the word."""
-    guess = guess.lower()  # Convert the guess into lower case
-    if guess in word:
-        print(f"Good guess! {guess} is in the word.")
+def is_letter_in_word(letter, target_word):
+    """Check if the guessed letter is present in the target word."""
+    letter = letter.lower()  # Normalize the letter to lower case
+    if letter in target_word:
+        print(f"Good guess! '{letter}' is in the word.")
         return True
     else:
-        print(f"Sorry, {guess} is not in the word. Try again.")
+        print(f"Sorry, '{letter}' is not in the word. Try again.")
         return False
 
 
-def ask_for_input(word):
-    """Ask the user to input a letter and validate it."""
-    while True:  # Continue to ask for a letter until the user inputs a valid one
-        guess = input("Guess a letter: ")  # Prompt the user for a guess
-        if len(guess) == 1 and guess.isalpha():  # Check if guess is a single alphabetical character
-            if check_guess(guess, word):  # If the guess is in the word
-                break  # Exit the loop
+def prompt_user_guess():
+    """Prompt the user for a valid single alphabetical letter guess."""
+    while True:
+        user_input = input("Guess a letter: ")
+        if len(user_input) == 1 and user_input.isalpha():
+            return user_input
         else:
-            print("Invalid letter. Please, enter a single alphabetical character.")
+            print("Invalid input. Please enter a single alphabetical letter.")
+
+
+def start_guessing_game(word_to_guess):
+    """Start the guessing game, asking the user to guess letters of a given word."""
+    while True:
+        guessed_letter = prompt_user_guess()  # Get a valid user guess
+        if is_letter_in_word(guessed_letter, word_to_guess):
+            break  # Exit the loop if the guess is correct
 
 
 # Assuming the secret word is 'apple' for the example
 secret_word = "apple"
 
-# Start the user input process
-ask_for_input(secret_word)
+# Begin the letter guessing game
+start_guessing_game(secret_word)
