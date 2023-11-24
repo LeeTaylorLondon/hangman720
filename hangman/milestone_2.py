@@ -1,12 +1,17 @@
 import random
 
-# Step 1: Ask the user to enter a single letter
+# Ask for a single letter input
 guess = input("Enter a single letter: ")
 
-word_list = ["banana", "orange", "apple", "pear", "grapes"]
+# Check if input is valid
+if len(guess) == 1 and guess.isalpha():
+    print("Good guess!")
+else:
+    print("Oops! That is not a valid input.")
 
-# Using random.choice to select a random word from the list
+# Select a random word
+word_list = ["banana", "orange", "apple", "pear", "grapes"]
 word = random.choice(word_list)
 
-# Printing the randomly selected word
+# Print the random word
 print(word)
