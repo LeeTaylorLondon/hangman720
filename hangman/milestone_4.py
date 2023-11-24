@@ -10,11 +10,14 @@ class Hangman:
         self.list_of_guesses = []
 
     def check_guess(self, guess):
-        """Check if the guessed letter is in the word."""
+        """Check if the guessed letter is in the word and reveal it in the word_guessed."""
         guess = guess.lower()  # Convert to lower case
         if guess in self.word:
             print(f"Good guess! {guess} is in the word.")
-            # More logic will be added here in later tasks
+            for index, letter in enumerate(self.word):
+                if letter == guess:
+                    self.word_guessed[index] = guess  # Replace underscore with the guess
+            self.num_letters -= 1  # Reduce the number of unique letters by 1
 
     def ask_for_input(self):
         """Prompt the user for a letter and validate it."""
