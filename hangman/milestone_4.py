@@ -2,15 +2,35 @@ class Hangman:
     def __init__(self, word_list, num_lives=5):
         """Initialize the Hangman class with given word list and number of lives."""
         import random
+        self.word = random.choice(word_list)
+        self.word_guessed = ['_' for _ in self.word]
+        self.num_letters = len(set(self.word))
+        self.num_lives = num_lives
+        self.word_list = word_list
+        self.list_of_guesses = []
 
-        self.word = random.choice(word_list)  # Randomly pick a word from the word list
-        self.word_guessed = ['_' for _ in self.word]  # Initialize word_guessed with underscores
-        self.num_letters = len(set(self.word))  # Number of unique letters in the word
-        self.num_lives = num_lives  # Set the number of lives
-        self.word_list = word_list  # Store the word list
-        self.list_of_guesses = []  # Initialize an empty list for guesses
+    def check_guess(self, guess):
+        """Check if the guessed letter is in the word."""
+        guess = guess.lower()  # Convert to lower case
+        if guess in self.word:
+            print(f"Good guess! {guess} is in the word.")
+            # More logic will be added here in later tasks
+
+    def ask_for_input(self):
+        """Prompt the user for a letter and validate it."""
+        while True:
+            guess = input("Guess a letter: ")
+            if not (len(guess) == 1 and guess.isalpha()):
+                print("Invalid letter. Please, enter a single alphabetical character.")
+            elif guess in self.list_of_guesses:
+                print("You already tried that letter!")
+            else:
+                self.check_guess(guess)  # Call check_guess method
+                self.list_of_guesses.append(guess)  # Append guess to list_of_guesses
+                break
 
 
-# Example usage:
+# Example usage
 word_list = ["apple", "banana", "orange"]
 game = Hangman(word_list)
+game.ask_for_input()  # Testing the method
