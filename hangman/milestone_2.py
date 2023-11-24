@@ -1,9 +1,12 @@
 import random
 
+# Step 1: Ask the user to enter a single letter
+guess = input("Enter a single letter: ")
+
 word_list = ["banana", "orange", "apple", "pear", "grapes"]
 
-# Step 3 and 4: Create the random.choice method and assign the result to a variable called word
+# Using random.choice to select a random word from the list
 word = random.choice(word_list)
 
-# Step 5: Print out word
+# Printing the randomly selected word
 print(word)
